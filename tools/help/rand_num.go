@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"math"
 	"math/big"
+	rand2 "math/rand"
+	"time"
 )
 
 func RandNum(length int) string {
@@ -36,4 +38,9 @@ func RandInt(length int) (n int64) {
 	}
 
 	return n
+}
+
+func RandLt(max int) int {
+	rand2.Seed(time.Now().UnixNano())
+	return rand2.Intn(max)
 }
