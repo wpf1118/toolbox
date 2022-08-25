@@ -16,10 +16,10 @@ var (
 
 func init() {
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
-	log = zerolog.New(defaultZerologConsoleWriter()).With().Timestamp().CallerWithSkipFrameCount(3).Logger()
+	log = zerolog.New(DefaultZerologConsoleWriter()).With().Timestamp().CallerWithSkipFrameCount(3).Logger()
 }
 
-func defaultZerologConsoleWriter() zerolog.ConsoleWriter {
+func DefaultZerologConsoleWriter() zerolog.ConsoleWriter {
 	return zerolog.ConsoleWriter{
 		Out:        os.Stdout,
 		NoColor:    true,
@@ -51,4 +51,8 @@ func InfoF(format string, v ...interface{}) {
 func ErrorF(format string, v ...interface{}) error {
 	log.Error().Msgf(format, v...)
 	return fmt.Errorf(format, v...)
+}
+
+func GetLogger() *zerolog.Logger {
+	return &log
 }

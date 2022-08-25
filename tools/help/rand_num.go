@@ -44,3 +44,7 @@ func RandLt(max int) int {
 	rand2.Seed(time.Now().UnixNano())
 	return rand2.Intn(max)
 }
+
+func RandStrForNow() string {
+	return fmt.Sprintf("%s%s", time.Now().Format("20060102"), RandNum(4))
+}

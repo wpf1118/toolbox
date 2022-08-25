@@ -2,6 +2,7 @@ package errno
 
 import (
 	"fmt"
+	"github.com/rs/zerolog"
 	"github.com/wpf1118/toolbox/tools/logging"
 )
 
@@ -29,7 +30,8 @@ func (e Error) AddError(err error) Error {
 }
 
 func (e Error) Log() Error {
-	logging.ErrorF(e.Message)
+	log := zerolog.New(logging.DefaultZerologConsoleWriter()).With().Timestamp().CallerWithSkipFrameCount(4).Logger()
+	log.Error().Msgf("%d: %s", e.ErrorCode(), e.Error())
 	return e
 }
 
