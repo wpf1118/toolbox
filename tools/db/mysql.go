@@ -6,6 +6,8 @@ import (
 	"github.com/wpf1118/toolbox/tools/logging"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/schema"
+	"strings"
 )
 
 type Mysql struct {
@@ -41,6 +43,12 @@ func newMysqlClient(mysqlOpts *flag.MysqlOpts) (*Mysql, error) {
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
 		DisableForeignKeyConstraintWhenMigrating: true,
+		NamingStrategy: schema.NamingStrategy{
+			TablePrefix:   "",                                // table name prefix, table for `User` would be `t_users`
+			SingularTable: true,                              // use singular table name, table for `User` would be `user` with this option enabled
+			NoLowerCase:   false,                             // skip the snake_casing of names
+			NameReplacer:  strings.NewReplacer("CID", "Cid"), // use name replacer to change struct/field name before convert it to db name
+		},
 	})
 
 	if err != nil {
@@ -48,19 +56,11 @@ func newMysqlClient(mysqlOpts *flag.MysqlOpts) (*Mysql, error) {
 		return nil, err
 	}
 
-	// eg
-	type Kv struct {
-		ID        uint           `json:"id" gorm:"primarykey"`
-		Key       string         `json:"key"`
-		Value     string         `json:"value"`
-		CreatedAt int64          `json:"created_at" gorm:"autoCreateTime"`
-		UpdatedAt int64          `json:"updated_at" gorm:"autoUpdateTime"`
-		DeletedAt gorm.DeletedAt `json:"-" gorm:"index"`
-	}
-
-	db.AutoMigrate(&Kv{})
-
 	return &Mysql{
 		db,
 	}, nil
+}
+
+func (m *Mysql) List() {
+
 }
