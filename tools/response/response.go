@@ -41,8 +41,8 @@ type ResData struct {
 
 type List struct {
 	Total int64       `json:"total"`
-	Page  int64       `json:"page"`
-	Size  int64       `json:"size"`
+	Page  int         `json:"page"`
+	Size  int         `json:"size"`
 	List  interface{} `json:"list"`
 }
 

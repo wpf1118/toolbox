@@ -7,15 +7,15 @@ import (
 )
 
 const (
-	defaultPage int64 = 1
-	defaultSize int64 = 10
+	defaultPage int = 1
+	defaultSize int = 10
 )
 
 type ListReq struct {
 	Search map[string]interface{} `json:"search"`
 	Sort   map[string]interface{} `json:"sort"`
-	Page   int64                  `json:"page"`
-	Size   int64                  `json:"size"`
+	Page   int                    `json:"page"`
+	Size   int                    `json:"size"`
 }
 
 func NewListReq() *ListReq {
