@@ -2,7 +2,7 @@ package response
 
 import (
 	"encoding/json"
-	"github.com/wpf1118/toolbox/tools/errno"
+	"gitlab.arksec.cn/wpf1118/toolbox/tools/errno"
 	"net/http"
 )
 

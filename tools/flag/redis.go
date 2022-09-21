@@ -1,6 +1,6 @@
 package flag
 
-import "github.com/wpf1118/toolbox/tools/env"
+import "gitlab.arksec.cn/wpf1118/toolbox/tools/env"
 
 //RedisOpts the Mongo options.
 type RedisOpts struct {

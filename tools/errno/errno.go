@@ -3,7 +3,7 @@ package errno
 import (
 	"fmt"
 	"github.com/rs/zerolog"
-	"github.com/wpf1118/toolbox/tools/logging"
+	"gitlab.arksec.cn/wpf1118/toolbox/tools/logging"
 )
 
 type Error struct {

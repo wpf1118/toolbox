@@ -3,7 +3,7 @@ package tools
 import (
 	"fmt"
 	"github.com/tevino/abool"
-	"github.com/wpf1118/toolbox/tools/logging"
+	"gitlab.arksec.cn/wpf1118/toolbox/tools/logging"
 	"os"
 	"os/signal"
 	"syscall"

@@ -1,7 +1,7 @@
 package flag
 
 import (
-	"github.com/wpf1118/toolbox/tools/env"
+	"gitlab.arksec.cn/wpf1118/toolbox/tools/env"
 )
 
 // MysqlOpts the Mongo options.

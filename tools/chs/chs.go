@@ -2,7 +2,7 @@ package chs
 
 import (
 	"fmt"
-	"github.com/wpf1118/toolbox/tools/logging"
+	"gitlab.arksec.cn/wpf1118/toolbox/tools/logging"
 	"sync"
 )
 

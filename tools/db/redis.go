@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/go-redis/redis/v8"
-	"github.com/wpf1118/toolbox/tools/flag"
+	"gitlab.arksec.cn/wpf1118/toolbox/tools/flag"
 	"time"
 )
 

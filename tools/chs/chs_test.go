@@ -3,10 +3,10 @@ package chs
 import (
 	"context"
 	"fmt"
-	"github.com/wpf1118/toolbox/tools/db"
-	"github.com/wpf1118/toolbox/tools/flag"
-	"github.com/wpf1118/toolbox/tools/help"
-	"github.com/wpf1118/toolbox/tools/logging"
+	"gitlab.arksec.cn/wpf1118/toolbox/tools/db"
+	"gitlab.arksec.cn/wpf1118/toolbox/tools/flag"
+	"gitlab.arksec.cn/wpf1118/toolbox/tools/help"
+	"gitlab.arksec.cn/wpf1118/toolbox/tools/logging"
 	"testing"
 	"time"
 )
