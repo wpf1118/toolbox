@@ -40,14 +40,14 @@ func TestNewChs(t *testing.T) {
 		return nil, nil
 	}
 
-	chs := NewChs(fn)
+	chs := NewChs("测试任务", 100, fn)
 
 	var tasks []interface{}
 	for i := 0; i < 10001; i++ {
 		tasks = append(tasks, i)
 	}
 
-	chs.Work(100, tasks)
+	chs.Work(tasks)
 
 	total := chs.GetTotal()
 

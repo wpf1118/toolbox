@@ -9,16 +9,18 @@ import (
 type Chs struct {
 	*sync.RWMutex
 	*sync.WaitGroup
-	fn      func(interface{}) (interface{}, error)
-	results []interface{}
-	chs     []chan interface{}
-	total   int
+	taskName  string `comment:"任务名称"`
+	workerNum int    `comment:"工人数量"`
+	fn        func(interface{}) (interface{}, error)
+	results   []interface{}
+	chs       []chan interface{}
+	total     int
 }
 
-func NewChs(fn func(interface{}) (interface{}, error)) *Chs {
+func NewChs(taskName string, workerNum int, fn func(interface{}) (interface{}, error)) *Chs {
 	var RWMutex sync.RWMutex
 	var waitGroup sync.WaitGroup
-	return &Chs{RWMutex: &RWMutex, WaitGroup: &waitGroup, fn: fn}
+	return &Chs{RWMutex: &RWMutex, WaitGroup: &waitGroup, fn: fn, taskName: taskName, workerNum: workerNum}
 }
 
 // worker 处理一个通道里的数据
@@ -27,14 +29,14 @@ func (c *Chs) worker(workerNo string, ch <-chan interface{}) {
 	var n int
 	var result []interface{}
 	for msg := range ch {
+		n++
+		logging.DebugF("%s Worker: %s  正在处理第: %d ", c.taskName, workerNo, n)
+
 		res, err := c.fn(msg)
 		if err != nil {
-			logging.ErrorF("%v", err)
+			logging.ErrorF("%s Worker: %s Error: %v", c.taskName, workerNo, err)
 			continue
 		}
-
-		n++
-		logging.DebugF("worker deal: %s %d", workerNo, n)
 
 		if res != nil {
 			result = append(result, res)
@@ -48,7 +50,9 @@ func (c *Chs) worker(workerNo string, ch <-chan interface{}) {
 }
 
 // createWorkers 创建消费者
-func (c *Chs) createWorkers(num int) {
+func (c *Chs) createWorkers() {
+	num := c.workerNum
+
 	for i := 0; i < num; i++ {
 		ch := make(chan interface{})
 		c.chs = append(c.chs, ch)
@@ -62,9 +66,10 @@ func (c *Chs) createWorkers(num int) {
 }
 
 // Work 消费者
-func (c *Chs) Work(num int, tasks []interface{}) {
+func (c *Chs) Work(tasks []interface{}) {
+	num := c.workerNum
 	// 创建消费者
-	c.createWorkers(num)
+	c.createWorkers()
 
 	for k, task := range tasks {
 		i := k % num
