@@ -17,7 +17,7 @@ func NewDefaultMysqlOpts() *MysqlOpts {
 	return &MysqlOpts{
 		Endpoint: env.GetEnv(env.MysqlEndpoint, "localhost:3306"),
 		Username: env.GetEnv(env.MysqlUsername, "root"),
-		Password: env.GetEnv(env.MysqlPassword, "root"),
-		Database: env.GetEnv(env.MysqlDatabase, "api"),
+		Password: env.GetEnv(env.MysqlPassword, "123456"),
+		Database: env.GetEnv(env.MysqlDatabase, "os_scan"),
 	}
 }

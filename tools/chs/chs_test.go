@@ -47,7 +47,7 @@ func TestNewChs(t *testing.T) {
 		tasks = append(tasks, i)
 	}
 
-	chs.Product(100, tasks)
+	chs.Work(100, tasks)
 
 	total := chs.GetTotal()
 

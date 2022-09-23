@@ -61,8 +61,8 @@ func (c *Chs) createWorkers(num int) {
 	return
 }
 
-// Product 生产者
-func (c *Chs) Product(num int, tasks []interface{}) {
+// Work 消费者
+func (c *Chs) Work(num int, tasks []interface{}) {
 	// 创建消费者
 	c.createWorkers(num)
 

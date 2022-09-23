@@ -6,8 +6,12 @@ import (
 	"gitlab.arksec.cn/wpf1118/toolbox/tools/logging"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 	"gorm.io/gorm/schema"
+	"log"
+	"os"
 	"strings"
+	"time"
 )
 
 type Mysql struct {
@@ -50,6 +54,15 @@ func newMysqlClient(mysqlOpts *flag.MysqlOpts) (*Mysql, error) {
 	//	SkipInitializeWithVersion: false, // 根据当前 MySQL 版本自动配置
 	//}), &gorm.Config{})
 	//
+
+	slowLogger := logger.New(
+		log.New(os.Stdout, "\r\n", log.LstdFlags),
+		logger.Config{
+			SlowThreshold:             5000 * time.Millisecond,
+			Colorful:                  true,
+			IgnoreRecordNotFoundError: true,
+			LogLevel:                  logger.Warn,
+		})
 	db, err := gorm.Open(mysql.New(mysql.Config{
 		DSN:                           dsn,
 		Conn:                          nil,
@@ -69,6 +82,7 @@ func newMysqlClient(mysqlOpts *flag.MysqlOpts) (*Mysql, error) {
 			NoLowerCase:   false,                             // skip the snake_casing of names
 			NameReplacer:  strings.NewReplacer("CID", "Cid"), // use name replacer to change struct/field name before convert it to db name
 		},
+		Logger: slowLogger,
 	})
 
 	if err != nil {
