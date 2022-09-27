@@ -6,6 +6,7 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"strings"
 )
 
@@ -182,4 +183,24 @@ func (f *Filer) IsExist() (exist bool) {
 		return true
 	}
 	return false
+}
+
+func (f *Filer) GetAllFilenames() (filenames []string) {
+	if !f.IsExist() {
+		return
+	}
+	err := filepath.Walk(f.path, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+		if !info.IsDir() {
+			filenames = append(filenames, info.Name())
+		}
+		return nil
+	})
+	if err != nil {
+		return
+	}
+
+	return
 }

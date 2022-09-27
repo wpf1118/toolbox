@@ -23,7 +23,7 @@ var mysqldb *Mysql
 func NewMysql() *Mysql {
 	if mysqldb == nil {
 		logging.ErrorF("db 模块没有初始化")
-		panic("db 模块没有初始化")
+		return nil
 	}
 
 	return mysqldb
