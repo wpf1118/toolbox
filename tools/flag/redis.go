@@ -1,6 +1,6 @@
 package flag
 
-import "gitlab.arksec.cn/wpf1118/toolbox/tools/env"
+import "github.com/wpf1118/toolbox/tools/env"
 
 //RedisOpts the Mongo options.
 type RedisOpts struct {
@@ -10,6 +10,6 @@ type RedisOpts struct {
 //NewDefaultRedisOpts returns a new default mongodb options.
 func NewDefaultRedisOpts() *RedisOpts {
 	return &RedisOpts{
-		Endpoint: env.GetEnv(env.RedisEndpoint),
+		Endpoint: env.GetEnv(env.RedisEndpoint, "127.0.0.1:16379"),
 	}
 }

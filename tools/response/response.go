@@ -2,8 +2,9 @@ package response
 
 import (
 	"encoding/json"
-	"gitlab.arksec.cn/wpf1118/toolbox/tools/errno"
 	"net/http"
+
+	"github.com/wpf1118/toolbox/tools/errno"
 )
 
 // Respond setups the response correctly for HTTP requests

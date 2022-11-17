@@ -2,8 +2,9 @@ package chs
 
 import (
 	"fmt"
-	"gitlab.arksec.cn/wpf1118/toolbox/tools/logging"
 	"sync"
+
+	"github.com/wpf1118/toolbox/tools/logging"
 )
 
 type Chs struct {

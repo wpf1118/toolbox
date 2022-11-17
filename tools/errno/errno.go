@@ -2,8 +2,9 @@ package errno
 
 import (
 	"fmt"
+
 	"github.com/rs/zerolog"
-	"gitlab.arksec.cn/wpf1118/toolbox/tools/logging"
+	"github.com/wpf1118/toolbox/tools/logging"
 )
 
 type Error struct {

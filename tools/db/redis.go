@@ -3,9 +3,10 @@ package db
 import (
 	"context"
 	"fmt"
-	"github.com/go-redis/redis/v8"
-	"gitlab.arksec.cn/wpf1118/toolbox/tools/flag"
 	"time"
+
+	"github.com/go-redis/redis/v8"
+	"github.com/wpf1118/toolbox/tools/flag"
 )
 
 var redisClient *redis.Client

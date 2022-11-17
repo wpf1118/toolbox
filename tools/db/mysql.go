@@ -2,16 +2,17 @@ package db
 
 import (
 	"fmt"
-	"gitlab.arksec.cn/wpf1118/toolbox/tools/flag"
-	"gitlab.arksec.cn/wpf1118/toolbox/tools/logging"
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
-	"gorm.io/gorm/logger"
-	"gorm.io/gorm/schema"
 	"log"
 	"os"
 	"strings"
 	"time"
+
+	"github.com/wpf1118/toolbox/tools/flag"
+	"github.com/wpf1118/toolbox/tools/logging"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
+	"gorm.io/gorm/schema"
 )
 
 type Mysql struct {

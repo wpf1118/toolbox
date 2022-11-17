@@ -2,11 +2,12 @@ package tools
 
 import (
 	"fmt"
-	"github.com/tevino/abool"
-	"gitlab.arksec.cn/wpf1118/toolbox/tools/logging"
 	"os"
 	"os/signal"
 	"syscall"
+
+	"github.com/tevino/abool"
+	"github.com/wpf1118/toolbox/tools/logging"
 )
 
 // Service defines the Run() that returns a stop function to call
